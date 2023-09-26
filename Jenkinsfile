@@ -37,7 +37,10 @@ pipeline {
     
     post {
         success {
-            // Notify or perform additional actions upon successful pipeline execution
+            echo 'Pipeline Succeeded!  Deployed to Render.'
+        }
+        failure {
+            echo 'Pipeline Failed! Deployment to Render Unsuccesful'
         }
     }
 }
