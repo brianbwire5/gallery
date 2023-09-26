@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+    tools {nodejs "NodeJs"}
     stages {
         stage('Checkout') {
             steps {
@@ -11,16 +11,15 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                // Install dependencies 
+                // Install dependencies on application
                 sh 'npm install'
             }
         }
         
-        stage('Build and Deploy') {
+        stage('Test') {
             steps {
-                // Build and deploy your application
-                sh 'npm run build' 
-                sh 'npm start'     
+                // Build and deploy 
+                sh 'npm test'     
             }
         }
         
@@ -37,6 +36,7 @@ pipeline {
     
     post {
         success {
+            //failed
             echo 'Pipeline Succeeded!  Deployed to Render.'
         }
         failure {
